@@ -1,5 +1,5 @@
 {
-    "name": "drupalwxt/site-wxt",
+    "name": "drupalwxt/site-tc-internet",
     "description": "Project template for Drupal 8 sites built with the WxT distribution.",
     "type": "project",
     "license": "GPL-2.0+",
@@ -10,7 +10,71 @@
         "drupal/core-composer-scaffold": "*",
         "drupalwxt/wxt": "4.0.x-dev",
         "drush/drush": ">=9.7",
-        "oomphinc/composer-installers-extender": "^1.1 || ^2"
+        "oomphinc/composer-installers-extender": "^1.1 || ^2",
+        "drupal/administerusersbyrole": "^3.0",
+        "drupal/administration_language_negotiation": "^1.10",
+        "drupal/allowed_formats": "^1.3",
+        "drupal/asset_injector": "^2.7",
+        "drupal/bulk_update_fields": "^2.0@alpha",
+        "drupal/backup_migrate": "^5.0.0-rc2",
+        "drupal/captcha": "^1.1",
+        "drupal/cdn": "^3.5",
+        "drupal/charts": "^3.2",
+        "drupal/codemirror_editor": "^1.6",
+        "drupal/config_delete": "^1.17",
+        "drupal/convert_bundles": "^1.0@alpha",
+        "drupal/cshs": "^1.0@beta",
+        "drupal/ckeditor_templates": "^1.2",
+        "drupal/ckeditor_templates_ui": "^1.4",
+        "drupal/custom_search": "^1.0@beta",
+        "drupal/devel": "^4.0.1",
+        "drupal/devel_entity_updates": "^3.0.0",
+        "drupal/devel_php": "^1.3",
+        "drupal/dynamic_entity_reference": "^2.0@alpha",
+        "drupal/editor_advanced_link": "^1.8",
+        "drupal/element_class_formatter": "^1.3",
+        "drupal/entity_field_condition": "1.x-dev",
+        "drupal/facets": "^1.6",
+        "drupal/features": "^3.11",
+        "drupal/file_delete": "^1.0",
+        "drupal/entity_clone": "^1.0@beta",
+        "drupal/geofield": "^1.16",
+        "drupal/google_tag": "^1.4",
+        "drupal/insert_view_adv": "^1.0@beta",
+        "drupal/layout_builder_styles": "^1.0@beta",
+        "drupal/leaflet": "^2.1.5",
+        "drupal/link_class": "^2.0.0",
+        "drupal/linkit": "5.0.0-beta11",
+        "drupal/media_entity_download": "^2.0",
+        "drupal/moderation_note": "^1.0@beta",
+        "drupal/module_filter": "3.x-dev",
+        "drupal/mini_layouts": "^1.0@alpha",
+        "drupal/node_authlink": "^1.3",
+        "drupal/prepopulate": "^2.3",
+        "drupal/purge": "^3.0",
+        "drupal/recaptcha": "^3.0",
+        "drupal/shield": "^1.4",
+        "drupal/smtp": "^1.0",
+        "drupal/tac_lite": "^1.5",
+        "drupal/taxonomy_manager": "^2.0.3",
+        "drupal/toc_js": "^1.8",
+        "drupal/twig_tweak": "^2.8",
+        "drupal/varnish_purge": "^2.0",
+        "drupal/views_bulk_edit": "^2.5",
+        "drupal/views_bulk_operations": "^3.9",
+        "drupal/views_data_export": "^1.0@RC",
+        "drupal/webform_views": "^5.0@alpha",
+        "drupaloverride/book_tree_menu": "^1.0",
+        "drupaloverride/business_rules": "1.x-dev",
+        "drupaloverride/content_export_yaml": "2.x-dev",
+        "drupaloverride/extra_image_field_classes": "1.x-dev",
+        "drupaloverride/library_manager": "1.x-dev",
+        "drupaloverride/linkchecker": "1.x-dev",
+        "drupaloverride/list_formatter": "2.x-dev",
+        "drupaloverride/token_language": "1.x-dev",
+        "drupaloverride/views_argument_token": "1.x-dev",
+        "drupaloverride/views_url_alias": "1.x-dev",
+        "toc/toc": "^0.3.2"
     },
     "require-dev": {
         "drupal/core-dev": "^9",
@@ -18,11 +82,7 @@
         "squizlabs/php_codesniffer": "^3.3"
     },
     "config": {
-        "secure-http": false,
-        "prestissimo": {
-            "maxConnections": 10,
-            "minConnections": 5
-        }
+        "secure-http": false
     },
     "repositories": [
         {
@@ -36,6 +96,138 @@
         {
             "type": "composer",
             "url": "https://drupalwxt.github.io/composer-extdeps/"
+        },
+        {
+            "type": "package",
+            "package": {
+                "name": "toc/toc",
+                "version": "v0.3.2",
+                "type": "drupal-library",
+                "dist": {
+                    "url": "https://raw.githubusercontent.com/jgallen23/toc/greenkeeper/update-all/dist/toc.min.js",
+                    "type": "file"
+                }
+            }
+        },
+        {
+            "type": "package",
+            "package": {
+                "name": "drupaloverride/book_tree_menu",
+                "version": "1.x-dev",
+                "type": "drupal-module",
+                "dist": {
+                    "url": "https://git.drupalcode.org/project/book_tree_menu/repository/archive.zip?ref=8.x-1.0",
+                    "type": "zip"
+                }
+            }
+        },
+        {
+            "type": "package",
+            "package": {
+                "name": "drupaloverride/business_rules",
+                "version": "1.x-dev",
+                "type": "drupal-module",
+                "dist": {
+                    "url": "https://git.drupalcode.org/project/business_rules/repository/archive.zip?ref=8.x-1.x",
+                    "type": "zip"
+                }
+            }
+        },
+        {
+            "type": "package",
+            "package": {
+                "name": "drupaloverride/content_export_yaml",
+                "version": "2.x-dev",
+                "type": "drupal-module",
+                "dist": {
+                    "url": "https://git.drupalcode.org/project/content_export_yaml/repository/archive.zip?ref=8.x-2.9",
+                    "type": "zip"
+                }
+            }
+        },
+        {
+            "type": "package",
+            "package": {
+                "name": "drupaloverride/extra_image_field_classes",
+                "version": "1.x-dev",
+                "type": "drupal-module",
+                "dist": {
+                    "url": "https://git.drupalcode.org/project/extra_image_field_classes/repository/archive.zip?ref=8.x-1.x",
+                    "type": "zip"
+                }
+            }
+        },
+        {
+            "type": "package",
+            "package": {
+                "name": "drupaloverride/library_manager",
+                "version": "1.x-dev",
+                "type": "drupal-module",
+                "dist": {
+                    "url": "https://git.drupalcode.org/project/library_manager/repository/archive.zip?ref=8.x-1.x",
+                    "type": "zip"
+                }
+            }
+        },
+        {
+            "type": "package",
+            "package": {
+                "name": "drupaloverride/linkchecker",
+                "version": "1.x-dev",
+                "type": "drupal-module",
+                "dist": {
+                    "url": "https://git.drupalcode.org/project/linkchecker/repository/archive.zip?ref=8.x-1.x",
+                    "type": "zip"
+                }
+            }
+        },
+        {
+            "type": "package",
+            "package": {
+                "name": "drupaloverride/list_formatter",
+                "version": "2.x-dev",
+                "type": "drupal-module",
+                "dist": {
+                    "url": "https://git.drupalcode.org/project/list_formatter/repository/archive.zip?ref=8.x-2.x",
+                    "type": "zip"
+                }
+            }
+        },
+        {
+            "type": "package",
+            "package": {
+                "name": "drupaloverride/token_language",
+                "version": "1.x-dev",
+                "type": "drupal-module",
+                "dist": {
+                    "url": "https://git.drupalcode.org/project/token_language/repository/archive.zip?ref=8.x-1.x",
+                    "type": "zip"
+                }
+            }
+        },
+        {
+            "type": "package",
+            "package": {
+                "name": "drupaloverride/views_argument_token",
+                "version": "1.x-dev",
+                "type": "drupal-module",
+                "dist": {
+                    "url": "https://git.drupalcode.org/project/views_argument_token/repository/archive.zip?ref=8.x-1.x",
+                    "type": "zip"
+                }
+            }
+        },
+        {
+            "type": "package",
+            "package": {
+                "name": "drupaloverride/views_url_alias",
+                "version": "1.x-dev",
+                "type": "drupal-module",
+                "dist": {
+                    "url": "https://git.drupalcode.org/project/views_url_alias/repository/archive.zip?ref=8.x-1.x",
+                    "type": "zip"
+                }
+            }
         }
     ],
     "scripts": {
@@ -82,7 +274,132 @@
         "patchLevel": {
             "drupal/core": "-p2"
         },
-        "patches": { },
+        "patches": {
+            "drupal/book_tree_menu": {
+                "3136185 - Drupal 9 compatibility":
+                "https://www.drupal.org/files/issues/2020-05-13/d9_compatible-3136185-2.patch"
+            },
+            "drupal/ckeditor_templates_ui": {
+                "3109348 - Add ability to set conditions (by language and content-type) on templates":
+                "https://www.drupal.org/files/issues/2020-01-27/ckeditor_templates_ui-conditions_feature-3109348-2.patch"
+            },
+            "drupal/cshs": {
+                "2948891 - InvalidArgumentException: Value is not a valid entity.":
+                "https://www.drupal.org/files/issues/2018-09-20/InvalidArgumentException-value-is-not-a-valid-entity-2948891-7.patch"
+            },
+            "drupal/diff": {
+                "3004705 - The getModerationState() function fails to take translations into consideration":
+                "https://www.drupal.org/files/issues/2018-12-03/ModerationState-error-of-translated-node-in-revision-overview-page-3004705-4.patch",
+                "2882334: Revisions are not visible for some nodes":
+                "https://www.drupal.org/files/issues/2020-09-28/2882334-diff-missing_some_revisions-13.patch",
+                "3169729 - No local tasks on compare revisions page":
+                "https://www.drupal.org/files/issues/2020-09-08/diff_add-local-tasks-3169729-2.patch"
+            },
+            "drupal/entity_field_condition": {
+                "3186866 Adjust context definitions to D9 format":
+                "https://www.drupal.org/files/issues/2020-12-06/3186866-entity_field_condition-updates-for-con.patch"
+            },
+            "drupal/entityqueue": {
+                "3124403 - Type error when subqueue creation fails":
+                "https://www.drupal.org/files/issues/2020-04-02/type-error-3124403-2.patch"
+            },
+            "drupal/features": {
+                "3147028 - Update theme functions for Drupal 9":
+                "https://www.drupal.org/files/issues/2020-10-14/3147028-features_templates.patch"
+            },
+            "drupal/file_delete": {
+                "3115158 - Add functionality to immediately delete files and override usage check":
+                "https://www.drupal.org/files/issues/2020-02-21/3115158-2.patch"
+            },
+            "drupal/geofield": {
+                "3186865 - Adjust context definitions to D9 format":
+                "https://www.drupal.org/files/issues/2020-12-06/3186865-Geofield-updates-for-context-to-conten.patch"
+            },
+            "drupal/library_manager": {
+                "3138547 - Add dependency form fails with google_tag":
+                "https://www.drupal.org/files/issues/2020-05-21/library_manager-add_dep_wsod-3138547-2.patch",
+                "3143565 - Condition logic issue skips libraries that should be attached":
+                "https://www.drupal.org/files/issues/2020-05-28/library_manager-condition_logic-3143565-2.patch",
+                "3186863 - Drupal 9 compatibility fixes":
+                "https://www.drupal.org/files/issues/2020-12-06/3186863-Drupal-9-compatibility-fixes.patch"
+            },
+            "drupal/linkchecker": {
+                "Move linkchecker_watchdog_log out of .module to a dedicated service.":
+                "https://www.drupal.org/files/issues/2020-04-23/3109178-14.patch",
+                "Add support for Redirect module":
+                "https://www.drupal.org/files/issues/2020-06-17/3058014-27.patch",
+                "Undefined offset error":
+                "https://www.drupal.org/files/issues/2020-08-24/undefined-offset-error-3065045-13.patch",
+                "Link Extract Issue":
+                "https://www.drupal.org/files/issues/2020-06-08/3132326-9.patch",
+                "Remove Drupal 9 deprecations":
+                "https://www.drupal.org/files/issues/2020-05-18/3136822-24.patch",
+                "3173634 - Linkchecker breaks entityqueue":
+                "patches/linkchecker_entityqueue_error-3173634.patch"
+            },
+            "drupal/linkit": {
+                "2895153 - Linkit filter should honour the URL query and fragment":
+                "https://www.drupal.org/files/issues/2020-01-28/linkit_substitution_query_fragment-2895153-11.patch"
+            },
+            "drupal/moderation_dashboard": {
+                "3048782 - Call to a member function hasPermission() on string":
+                "https://www.drupal.org/files/issues/2020-05-04/user_load_moderation_dashboard_updated_with_DI_for_beta_version_3048782.patch"
+            },
+            "drupal/pathauto": {
+                "2973478 - Aliases are not created for affected translations":
+                "https://www.drupal.org/files/issues/2018-07-12/2973478-4.patch"
+            },
+            "drupal/redis": {
+                "3004561 - Enable ssl scheme":
+                "https://www.drupal.org/files/issues/2019-06-26/override-default-scheme-and-persistent-for-predis-3004561-12.patch"
+            },
+            "drupal/taxonomy_manager": {
+                "3046752 - AJAX error when editing term content":
+                "https://www.drupal.org/files/issues/2019-07-30/taxonomy_manager-3046752-1.patch"
+            },
+            "drupal/views_url_alias": {
+                "3104606 - Implement path alias changes in 8.x-1.x":
+                "https://www.drupal.org/files/issues/2020-01-13/3104606-15.patch"
+            },
+            "drupaloverride/business_rules": {
+                "3146343 - Drupal 9 compatibility":
+                "https://www.drupal.org/files/issues/2020-12-06/3146343-Automated-Drupal-9-compatibility-fixes.patch",
+                "3146344 - Drupal 9 compatibility":
+                "https://www.drupal.org/files/issues/2020-12-06/3146343-deprecate-entity.manager-Rename-to-entity_type.manag_.patch"
+            },
+            "drupaloverride/content_export_yaml": {
+                "3146892 - Drupal 9 compatibility":
+                "https://www.drupal.org/files/issues/2020-12-06/3146892-Automated-Drupal-9-compatibility-fixes-2.patch"
+            },
+            "drupaloverride/extra_image_field_classes": {
+                "3139021 - Drupal 9 compatibility":
+                "https://www.drupal.org/files/issues/2020-05-22/3139021-3.patch"
+            },
+            "drupaloverride/library_manager": {
+                "3147920 - Drupal 9 compatibility":
+                "https://www.drupal.org/files/issues/2020-12-06/3147920-Automated-Drupal-9-compatibility-fixes.patch"
+            },
+            "drupaloverride/linkchecker": {
+                "3136822 - Drupal 9 compatibility":
+                "https://www.drupal.org/files/issues/2020-05-18/3136822-24.patch"
+            },
+            "drupaloverride/list_formatter": {
+                "3147945 - Drupal 9 compatibility":
+                "https://www.drupal.org/files/issues/2020-12-06/3147945-Automated-Drupal-9-compatibility-fixes.patch"
+            },
+            "drupaloverride/token_language": {
+                "3150515 - Drupal 9 compatibility":
+                "https://www.drupal.org/files/issues/2020-06-10/3150515-3.patch"
+            },
+            "drupaloverride/views_argument_token": {
+                "3139155 - Drupal 9 compatibility":
+                "https://www.drupal.org/files/issues/2020-05-22/views_argument_token-drupal9-refactoring-3139155-4.patch"
+            },
+            "drupaloverride/views_url_alias": {
+                "3142138 - Drupal 9 compatibility":
+                "https://www.drupal.org/files/issues/2020-06-02/3142138-4.patch"
+            }
+        },
         "patches-ignore": {
             "acquia/lightning": {
                 "drupal/core": {

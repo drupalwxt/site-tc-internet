@@ -1,9 +1,9 @@
-Composer Project template for Drupal WxT
-========================================
+Composer Project template for Drupal TC Intranet
+================================================
 
 [![Build Status][githubci-badge]][githubci]
 
-[Drupal WxT][wxt] codebase for `site-wxt`.
+[Drupal WxT][wxt] codebase for `site-tc-intranet`.
 
 > **Note**: You may find the [README.md][wxt] file in the WxT repository more beneficial then this composer project template.
 
@@ -48,13 +48,13 @@ For production releases you should only ever use a stable tag.
 ### New Project (stable tag)
 
 ```sh
-composer create-project drupalwxt/site-wxt:4.0.0 site-name
+composer create-project drupalwxt/site-tc-intranet:4.0.0 site-name
 ```
 
 ### New Project (dev)
 
 ```sh
-composer create-project drupalwxt/site-wxt:4.0.x-dev site-name
+composer create-project drupalwxt/site-tc-intranet:4.0.x-dev site-name
 ```
 
 ## Maintenance
@@ -77,8 +77,8 @@ Extended with code and lessons learned by the [Acquia Team](https://acquia.com) 
 
 [composer]:                     https://getcomposer.org
 [docker-scaffold]:              https://github.com/drupalwxt/docker-scaffold.git
-[githubci]:                     https://github.com/drupalwxt/site-wxt/actions
-[githubci-badge]:               https://github.com/drupalwxt/site-wxt/workflows/build/badge.svg
+[githubci]:                     https://github.com/drupalwxt/site-tc-intranet/actions
+[githubci-badge]:               https://github.com/drupalwxt/site-tc-intranet/workflows/build/badge.svg
 [node]:                         https://nodejs.org
 [lightning]:                    https://github.com/acquia/lightning
 [wxt]:                          https://github.com/drupalwxt/wxt

@@ -5,7 +5,10 @@ scripts/drupal
 files_private/
 
 # Composer files
-html
+html/*
+!html/modules/
+!html/themes/
+
 vendor
 */*/*/vendor
 */*/vendor
@@ -37,3 +40,13 @@ bower_components/
 
 # Custom
 docker
+
+# OpenPlus
+
+html/modules/*
+html/themes/*
+!html/modules/custom/
+!html/themes/custom/
+
+# Postgres
+*.backup

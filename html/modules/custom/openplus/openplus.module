@@ -1,0 +1,454 @@
+<?php
+
+use Drupal\Core\Form\FormStateInterface;
+use Drupal\Core\StringTranslation\TranslatableMarkup;
+use Drupal\node\Entity\Node;
+use Drupal\Core\Url;
+use Drupal\Core\Link;
+use Drupal\user\UserInterface;
+use Drupal\Core\Entity\EntityInterface;
+use Drupal\Core\Breadcrumb\Breadcrumb;
+use Drupal\Core\Routing\RouteMatchInterface;
+use Drupal\Core\Render\BubbleableMetadata;
+use Drupal\Core\Datetime\DrupalDateTime;
+use Drupal\tac_lite\Form\SchemeForm;
+use Drupal\Core\Render\Element;
+
+function openplus_moderation_sidebar_alter(array &$build, \Drupal\Core\Entity\EntityInterface $entity) {
+  if ($entity->getEntityTypeId() == 'node') {
+    $option = [
+      'attributes' => [
+        'class' => ['btn', 'btn-primary'],
+        'target' => '_blank',
+       ]
+    ];
+    $url = Url::fromUri('internal:/node/' . $entity->id() . '/node-links', $option);
+    $link = Link::fromTextAndUrl(t('View pages with links to this page'), $url);
+    $build['linked_nodes'] = $link->toRenderable();
+    $build['page_info'] = views_embed_view('page_information', 'block_1', $entity->id());
+    unset($build['actions']);
+  }
+}
+
+function openplus_preprocess_page(&$variables) {
+  $variables['#attached']['library'][] =
+    'openplus/data-tables';
+}
+
+/**
+ * Set active and active-trail class for book toc recursively.
+ */
+function openplus_preprocess_book_tree(&$variables) {
+  $current_path = \Drupal::request()->getRequestUri();
+  foreach ($variables['items'] as &$item) {
+    if ($item['in_active_trail']) {
+      if ($item['url']->toString() == $current_path) {
+        $item['is_active'] = TRUE;
+      } elseif (count($item['below'])) {
+         _openplus_menu_process_submenu($item['below'], $current_path);
+      }
+    }
+  }
+}
+
+/**
+ * Set active and active-trail class for sub-menus recursively.
+ */
+function _openplus_menu_process_submenu(&$submenu, $current_path) {
+  foreach ($submenu as &$item) {
+    if ($item['in_active_trail']) {
+      if ($item['url']->toString() == $current_path) {
+        $item['is_active'] = TRUE;
+      } elseif (count($item['below'])) {
+        _openplus_menu_process_submenu($item['below'], $current_path);
+      }
+    }
+  }
+}
+
+function openplus_form_alter(&$form, \Drupal\Core\Form\FormStateInterface $form_state, $form_id) {
+
+  switch ($form_id) {
+    case 'system_performance_settings':
+      if (function_exists('purge_processor_cron_cron')) {
+        $form['update_varnish'] = [
+          '#type' => 'details',
+          '#title' => t('Update varnish'),
+          '#open' => TRUE,
+          '#weight' => -10,
+        ];
+
+        $form['update_varnish']['update'] = [
+          '#type' => 'submit',
+          '#value' => t('Update varnish cache'),
+          '#submit' => ['openplus_update_varnish'],
+        ];
+      }
+    break;
+    case 'custom_search_block_form':
+      $form['actions']['submit']['#id'] = 'wb-srch-sub';
+      $form['actions']['submit']['#name'] = 'op';
+      $form['actions']['submit']['#value'] = '';
+      $form['actions']['submit']['#attributes']['class'][] = 'btn-primary';
+      //$form['actions']['submit']['#submit'][] = 'openplus_search_submit';
+    break;
+  }
+
+}
+
+function openplus_form_node_form_alter(&$form, &$form_state, $form_id) {
+
+  /** @var \Drupal\Core\Node\NodeForm $form_object */
+  $form_object = $form_state->getFormObject();
+  $node = $form_object->getEntity();
+  $bundle = $node->getType(); 
+
+  // default and disable team field for external user
+  $user = \Drupal::currentUser();
+  $roles = $user->getRoles();
+  $parent = \Drupal::request()->query->get('parent');
+  $book_node = !empty($parent) ? \Drupal::entityManager()->getStorage('node')->load($parent) : NULL;
+
+  // copy fields for external users
+  if (in_array("external", $roles)) {
+    // copy client-side hs fields
+    $copy_fields = ['field_team', 'field_topics', 'field_mode'];
+    foreach ($copy_fields as $field_name) {
+      if (isset($form[$field_name])) {
+        if (empty($form[$field_name]['widget']['#default_value']) && !empty($book_node)) {
+          // get tids from the book specified by parent=bid in url
+          $values = $book_node->get($field_name)->getValue();
+          $tids = [];
+          foreach ($values as $value) {
+            $tids[] = $value['target_id'];
+          }
+
+          // set the field defaults and disable 
+          _openplus_set_defaults($form, $field_name, $tids); 
+        }
+        $form[$field_name]['#access'] = FALSE;
+      }
+
+      // disable other fields
+      $disable_fields = ['field_region', 'field_routing_symbol', 'field_reference_number', 'field_migration', 'field_migration_state'];
+      foreach ($disable_fields as $field_name) {
+        if (isset($form[$field_name])) {
+          $form[$field_name]['#access'] = FALSE;
+        }
+      }
+    } 
+  }
+
+  // copy fields for BN users
+  if (in_array("bn_admin", $roles) || in_array("bn_review", $roles)) {
+    $copy_fields = ['field_team'];
+    foreach ($copy_fields as $field_name) {
+      if (isset($form[$field_name])) {
+        if (empty($form[$field_name]['widget']['#default_value'])) {
+          if (empty($book_node)) {
+            // if no book specified in URL then take team from tac lite config on user
+            $config = SchemeForm::tacLiteConfig(1);
+            $tids = array_filter(_tac_lite_user_tids($user, 1, $config));
+          }
+          else {
+            // otherwise take them from the book specified by parent=bid in url
+            $values = $book_node->get($field_name)->getValue();
+            $tids = [];
+            foreach ($values as $value) {
+              $tids[] = $value['target_id'];
+            }
+          }
+
+          // set the field defaults and disable 
+          _openplus_set_defaults($form, $field_name, $tids); 
+        }  
+        $form[$field_name]['#access'] = FALSE;
+      }
+    }
+  }
+
+  // get book configs
+  $config = \Drupal::config('book.settings');
+
+  // get configuration if this content-type is allowed as a book
+  $allowed = $config->get('allowed_type_' . $bundle);
+  // see if there is a parent in query in case we are adding a child
+
+  if (!$allowed) {
+    $form['book']['#access'] = FALSE; 
+  }
+  else {
+    $new_options = [];
+    $options = $form['book']['bid']['#options'];
+    // allow assigning to other books if user has edit access 
+    foreach ($options as $key => $option) {
+      if (is_numeric($key) and $key > 0 && $key != $node->id()) {
+        $bnode = \Drupal::entityTypeManager()->getStorage('node')->load($key);
+        if ($bnode->access('update')) {
+          $new_options[$key] = $option;
+        }
+      }
+      else {
+        $new_options[$key] = $option;
+      }
+    }
+
+    $form['book']['bid']['#options'] = $new_options;
+  }
+}
+
+function _openplus_set_defaults(&$form, $field_name, $tids) {
+  if (!empty($tids)) {
+    if (empty($form[$field_name]['widget'][0]['target_id']['#default_value'])) {
+      $base = $form[$field_name]['widget'][0];
+      foreach ($tids as $key => $tid) {
+        $form[$field_name]['widget'][$key] = $base;
+        $form[$field_name]['widget'][$key]['target_id']['#default_value'] = $tid;
+        $form[$field_name]['widget'][$key]['target_id']['#disabled'] = 'disabled';
+      }
+    }
+  }
+}
+
+function openplus_menu_local_tasks_alter(&$data, $route_name) {
+  $user = \Drupal::currentUser();
+  $routes = [
+    'entity.node.canonical',
+    'entity.node.edit_form',
+    'entity.node.delete_form',
+    'entity.node.version_history',
+    'node_authlink.node_authlink_node_form',
+    'entity_clone.clone:node.clone_tab',
+    'entity.node.convert_bundles',
+    'node.latest_version_tab',
+    'view.moderation_history.page',
+    'entity.node.content_translation_overview',
+    'entity.node.devel_load',
+  ];
+
+  if (in_array($route_name, $routes)) {
+    $node = \Drupal::routeMatch()->getParameter('node');
+
+    // hide devel tab for anyone but user 1 / admin
+    if ($user->id() != 1 && isset($data['tabs'][0]['entity.node.devel_load'])) {
+      unset($data['tabs'][0]['entity.node.devel_load']);
+    }
+    unset($data['tabs'][0]['entityqueue.entities:entity.node.entityqueue']);
+    unset($data['tabs'][0]['entity.node.book_outline_form']);
+    $data['tabs'][0]['convert_bundles.entities:entity.node.convert_bundles']['#link']['title'] = t('Convert');
+  }
+}
+
+function openplus_update_varnish() {
+  if (function_exists('purge_processor_cron_cron')) {
+    purge_processor_cron_cron();
+  }
+}
+
+function openplus_add_cancel(&$form) {
+  $form['actions']['submit_cancel'] = array (
+    '#type' => 'submit',
+    '#weight' => 999,
+    '#value' => t('Cancel'),
+    '#submit' => array('openplus_cancel_callback'),
+    '#limit_validation_errors' => [],
+  );
+}
+
+function openplus_hide_tags(&$form) {
+  // Get the current user
+  $user = \Drupal::currentUser()->getRoles();
+  if (!in_array("administrator", $user)) {
+    $form['revision_log']['#access'] = FALSE;
+    $form['revision_information']['#access'] = FALSE;
+    //$form['moderation_state']['#access'] = FALSE;
+  }
+  //vdpm($form);
+}
+
+function openplus_cancel_callback(array &$form, \Drupal\Core\Form\FormStateInterface &$form_state) {
+// Apparently, the cancel button just uses the destination param without us forcing it
+/*
+  $destination = \Drupal::request()->query->get('destination');
+  if (!empty($destination)) {
+    $path = \Drupal::service('path.alias_manager')->getPathByAlias($destination);
+    $node_path = explode('/', $path);
+    if (isset($node_path[2]) && is_numeric($node_path[2])) {
+      $form_state->setRedirect('entity.node.canonical', array('node' => $node_path[2]));
+    }
+  }
+*/
+}
+
+function openplus_system_breadcrumb_alter(Breadcrumb &$breadcrumb, RouteMatchInterface $route_match, array $context) {
+  if (!empty($breadcrumb) && !\Drupal::service('router.admin_context')->isAdminRoute() && 'layout_builder.defaults.node.view' != $route_match->getRouteName()) {
+    $links = $breadcrumb->getLinks();
+    array_shift($links);
+
+    $node = $route_match->getParameter('node');
+    $new_links = [];
+    $title = 'Canada.ca';
+    $lang = \Drupal::languageManager()->getCurrentLanguage()->getId();
+    $url = Url::fromUri('https://www.canada.ca/' . $lang . '.html');
+    $new_links[] = Link::fromTextAndUrl(t($title), $url);
+    if (!\Drupal::service('path.matcher')->isFrontPage()) {
+      $new_links[] = Link::fromTextAndUrl(t('Transport Canada'), Url::fromRoute('<front>'));
+    }
+
+    // remove search from breadcrumb    
+    if ($route_match->getRouteName() == 'view.site_search.page_1') {
+      $links = [];
+    }
+
+    // create new breadcrumb if node flagged for it
+    $langcode = \Drupal::languageManager()->getCurrentLanguage()->getId();
+    if ($node instanceof \Drupal\node\NodeInterface && $node->hasfield('field_autobc')) {
+      $autobc = $node->get('field_autobc')->getValue();
+      if ($autobc && $autobc[0]['value'] == 1 && !$node->get('field_topics')->isEmpty()) {
+        $links = [];
+        $ia_term = $node->get('field_topics')->first()->getValue();
+        $lineage = \Drupal::service('entity_type.manager')->getStorage("taxonomy_term")->loadAllParents($ia_term['target_id']);
+        foreach (array_reverse($lineage) as $tid => $term) {
+          $term = $term->getTranslation($langcode);
+          $label = $term->label();
+
+          if (!$term->get('field_breadcrumb_link')->isEmpty()) {
+            $noderef = $term->get('field_breadcrumb_link')->getValue();
+            $links[] = Link::fromTextAndUrl($label, Url::fromRoute('entity.node.canonical', ['node' => $noderef[0]['target_id']]));
+          }
+        }
+      }
+    }
+
+    $breadcrumb = new Breadcrumb();
+    $breadcrumb->setLinks(array_merge($new_links, $links));
+    $breadcrumb->addCacheContexts(['route']);
+  }
+}
+
+/**
+ * Implements hook_entity_type_alter().
+ */
+function openplus_entity_type_alter(array &$entity_types) {
+  foreach ($entity_types as $entity_type) {
+    $constraints = $entity_type->getConstraints();
+    unset($constraints['EntityUntranslatableFields']);
+    $entity_type->setConstraints($constraints);
+  }
+}
+
+/**
+ * Implements hook_webform_element_ELEMENT_TYPE_alter().
+ */
+function openplus_webform_element_webform_time_alter(array &$element, \Drupal\Core\Form\FormStateInterface $form_state, array $context) {
+  // change time format to 24h for French
+  $lang = \Drupal::languageManager()->getCurrentLanguage()->getId();
+  if ($lang == 'fr') {
+    $element['#time_format'] = 'H:i';
+  }
+}
+
+function openplus_entity_embed_alter(&$build, $entity, &$context) {
+  // This is a workaround to a problem where manually added classes to embedded entities are supposed
+  // to inherit any classes added to the drupal-entity object.
+  // This code will pass classes to img tag
+  if (isset($build['#attributes']['class']) && count($build['#attributes']['class']) > 1) {
+    $classes = $build['#attributes']['class'];
+    if (($key = array_search('embedded-entity', $classes)) !== FALSE) {
+      unset($classes[$key]);
+    }
+    $build['entity']['#item_attributes']['class'] = $classes;
+  }
+}
+
+function openplus_build_url(array $parts) {
+  return (isset($parts['scheme']) ? "{$parts['scheme']}:" : '') .
+      ((isset($parts['user']) || isset($parts['host'])) ? '//' : '') .
+      (isset($parts['user']) ? "{$parts['user']}" : '') .
+      (isset($parts['pass']) ? ":{$parts['pass']}" : '') .
+      (isset($parts['user']) ? '@' : '') .
+      (isset($parts['host']) ? "{$parts['host']}" : '') .
+      (isset($parts['port']) ? ":{$parts['port']}" : '') .
+      (isset($parts['path']) ? "{$parts['path']}" : '') .
+      (isset($parts['query']) ? "?{$parts['query']}" : '') .
+      (isset($parts['fragment']) ? "#{$parts['fragment']}" : '');
+}
+
+function openplus_cron() {
+
+  // We access our configuration.
+  $config = \Drupal::config('openplus.settings');
+  // Default to an hourly interval. Of course, cron has to be running at least
+  // hourly for this to work.
+  $interval = $config
+    ->get('news_check_interval');
+  $interval = !empty($interval) ? $interval : 3600;
+
+  // return if disabled
+  if ($interval == 0) {
+    return;
+  }
+
+  // We usually don't want to act every time cron runs (which could be every
+  // minute) so keep a time for the next run in the site state.
+  $next_execution = \Drupal::state()
+    ->get('openplus.next_execution', 0);
+  if (REQUEST_TIME >= $next_execution) {
+    // get latest news items
+    $uri = $config->get('news_check_url');
+    $headers = [
+      'Accept' => 'application/json; charset=utf-8',
+      'Content-Type' => 'application/json',
+    ];
+    $request = \Drupal::httpClient()
+      ->get($uri, array(
+       'headers' => $headers,
+    ));
+    $response = json_decode($request->getBody());
+
+    $data = $response->feed->entry;
+    $item_date = new DrupalDateTime($data[0]->publishedDate, 'UTC');
+    // check if we need to update varnish
+    $last_update = \Drupal::state()->get('op_wxt_last_update');
+    $moduleHandler = \Drupal::service('module_handler');
+    if ($moduleHandler->moduleExists('purge') && $last_update != $item_date->getTimestamp()) {
+      // save the date of the newest item
+      \Drupal::state()->set('op_wxt_last_update', $item_date->getTimestamp());
+      // invalidate the home page
+      \Drupal::logger('openplus')->notice('Invalidating home page on news item update.');
+      $purgeInvalidationFactory = \Drupal::service('purge.invalidation.factory');
+      $purgeQueuers = \Drupal::service('purge.queuers');
+      $purgeQueue = \Drupal::service('purge.queue');
+
+      $queuer = $purgeQueuers->get('myqueuer');
+      $invalidations = [
+        $purgeInvalidationFactory->get('tag', 'node:22'),
+      ];
+      $purgeQueue->add($queuer, $invalidations);
+    }
+  }
+}
+
+function openplus_node_links_alter(&$links, $node, &$context) {
+  //dpm($links);
+}
+
+function openplus_update_topics() {
+
+  $terms = \Drupal::entityTypeManager()->getStorage('taxonomy_term')->loadTree('topics');
+  foreach ($terms as $term) {
+    $nodes = \Drupal::entityTypeManager()
+      ->getStorage('node')
+      ->loadByProperties(['title' => $term->name]);
+
+    if (count($nodes) > 0) {
+      $term_object = \Drupal::entityTypeManager()->getStorage('taxonomy_term')->load($term->tid);
+      if (count($nodes) > 1) {
+        $term_object->set('field_requires_checking', TRUE);
+      }
+      $node = array_pop($nodes);
+      $term_object->set('field_breadcrumb_link', $node->id());
+      $term_object->save();
+    }
+  }
+}
