@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "6201b9e0d2f474421c70b55b410a1347",
+    "content-hash": "d348bd66555ceb287e5f0f7381348004",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -12355,12 +12355,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/drupalwxt/wxt.git",
-                "reference": "db4af2dedd19b64fb6c6db84d8f6dfb8e8b47115"
+                "reference": "7dca01994c927113375fdc7039b5dc073da73abe"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/drupalwxt/wxt/zipball/db4af2dedd19b64fb6c6db84d8f6dfb8e8b47115",
-                "reference": "db4af2dedd19b64fb6c6db84d8f6dfb8e8b47115",
+                "url": "https://api.github.com/repos/drupalwxt/wxt/zipball/7dca01994c927113375fdc7039b5dc073da73abe",
+                "reference": "7dca01994c927113375fdc7039b5dc073da73abe",
                 "shasum": ""
             },
             "require": {
@@ -12571,7 +12571,7 @@
                 "issues": "https://github.com/drupalwxt/wxt/issues",
                 "source": "https://github.com/drupalwxt/wxt/tree/4.0.x"
             },
-            "time": "2020-11-26T17:27:58+00:00"
+            "time": "2020-12-08T02:06:02+00:00"
         },
         {
             "name": "drush/drush",

@@ -357,10 +357,6 @@
                 "3046752 - AJAX error when editing term content":
                 "https://www.drupal.org/files/issues/2019-07-30/taxonomy_manager-3046752-1.patch"
             },
-            "drupal/views_url_alias": {
-                "3104606 - Implement path alias changes in 8.x-1.x":
-                "https://www.drupal.org/files/issues/2020-01-13/3104606-15.patch"
-            },
             "drupaloverride/business_rules": {
                 "3146343 - Drupal 9 compatibility":
                 "https://www.drupal.org/files/issues/2020-12-06/3146343-Automated-Drupal-9-compatibility-fixes.patch",
@@ -396,8 +392,10 @@
                 "https://www.drupal.org/files/issues/2020-05-22/views_argument_token-drupal9-refactoring-3139155-4.patch"
             },
             "drupaloverride/views_url_alias": {
-                "3142138 - Drupal 9 compatibility":
-                "https://www.drupal.org/files/issues/2020-06-02/3142138-4.patch"
+                "3036345 - Add Indexes":
+                "https://www.drupal.org/files/issues/2019-02-28/no-database-index-created-3036345-2.patch",
+                "3104606 - Automated Drupal 9 compatibility fixes":
+                "https://www.drupal.org/files/issues/2020-06-06/views_url_alias.1.x-dev.rector.patch"
             }
         },
         "patches-ignore": {
