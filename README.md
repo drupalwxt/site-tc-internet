@@ -30,12 +30,8 @@ The `composer.json` file calls the following dependencies:
 > Note: The [docker-scaffold][docker-scaffold] has now been moved to its own repository though symlinks are still present. Should you wish to use the docker workflow you simple need to run the following command in this repositories working directory.
 
 ```sh
-git clone https://github.com/drupalwxt/docker-scaffold.git docker
+git clone --branch 9.x-postgres https://github.com/drupalwxt/docker-scaffold.git docker
 ```
-
-### Lightning
-
-The intent of [Lightning][lightning] is to enable developers to create great authoring experiences and empower editorial teams. This is done by providing a lightweight framework, documentation and best practice examples for building working solutions in Drupal.
 
 ### WxT
 
