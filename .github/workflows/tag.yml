@@ -24,6 +24,7 @@ jobs:
     - name: Build out the Drupal infrastructure
       run: |
         git clone --branch 9.x-postgres https://github.com/drupalwxt/docker-scaffold.git docker
+        patch -p1 < patches/docker-scaffold.patch
         make build
         docker-compose -f docker-compose-ci.yml up -d
         docker ps -a
