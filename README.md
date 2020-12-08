@@ -24,7 +24,6 @@ export COMPOSER_MEMORY_LIMIT=-1 && composer install
 
 The `composer.json` file calls the following dependencies:
 
-* [Lightning][lightning]
 * [WxT][wxt]
 
 > Note: The [docker-scaffold][docker-scaffold] has now been moved to its own repository though symlinks are still present. Should you wish to use the docker workflow you simple need to run the following command in this repositories working directory.
