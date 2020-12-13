@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "1629dc20db072c950eaea2ef15d694b5",
+    "content-hash": "281845ba2f833d82a84512c25ca09cbc",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -11987,17 +11987,17 @@
         },
         {
             "name": "drupal/wxt_bootstrap",
-            "version": "4.1.0",
+            "version": "4.2.0",
             "source": {
                 "type": "git",
                 "url": "https://git.drupalcode.org/project/wxt_bootstrap.git",
-                "reference": "8.x-4.1"
+                "reference": "8.x-4.2"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://ftp.drupal.org/files/projects/wxt_bootstrap-8.x-4.1.zip",
-                "reference": "8.x-4.1",
-                "shasum": "d607ce792dceec87a862a016a380291809348332"
+                "url": "https://ftp.drupal.org/files/projects/wxt_bootstrap-8.x-4.2.zip",
+                "reference": "8.x-4.2",
+                "shasum": "d45213d7110b414442f75bcf4c3ffdcd3374051b"
             },
             "require": {
                 "cweagans/composer-patches": "^1.6.0",
@@ -12008,8 +12008,8 @@
             "type": "drupal-theme",
             "extra": {
                 "drupal": {
-                    "version": "8.x-4.1",
-                    "datestamp": "1605903934",
+                    "version": "8.x-4.2",
+                    "datestamp": "1607877425",
                     "security-coverage": {
                         "status": "covered",
                         "message": "Covered by Drupal's security advisory policy"
@@ -12317,12 +12317,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/drupalwxt/wxt.git",
-                "reference": "38eeda1cb09a80bdfa36f598c6c706dfb679d003"
+                "reference": "e31b0d3c6ca9498273cedd6ae35a63569f1aebf2"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/drupalwxt/wxt/zipball/38eeda1cb09a80bdfa36f598c6c706dfb679d003",
-                "reference": "38eeda1cb09a80bdfa36f598c6c706dfb679d003",
+                "url": "https://api.github.com/repos/drupalwxt/wxt/zipball/e31b0d3c6ca9498273cedd6ae35a63569f1aebf2",
+                "reference": "e31b0d3c6ca9498273cedd6ae35a63569f1aebf2",
                 "shasum": ""
             },
             "require": {
@@ -12371,7 +12371,7 @@
                 "drupal/views_bootstrap": "3.4",
                 "drupal/webform": "6.0.0-beta2",
                 "drupal/webform_migrate": "1.x-dev",
-                "drupal/wxt_bootstrap": "^4.1",
+                "drupal/wxt_bootstrap": "^4.2",
                 "drupal/wxt_library": "^4.2",
                 "ext-dom": "*",
                 "w8tcha/ckeditor-codemirror": "1.16"
@@ -12485,8 +12485,7 @@
                     "drupal/page_manager": {
                         "Enter drupal/page_manager patch #2626090 description here": "https://www.drupal.org/files/issues/page-manager-2626090-page-title-empty-5.patch",
                         "Enter drupal/page_manager patch #2710169 description here": "https://www.drupal.org/files/issues/page_manager-block-css-attributes-9.patch",
-                        "Enter drupal/page_manager patch #2752227 description here": "https://www.drupal.org/files/issues/2020-11-12/page_manager-incorrect-page_title-2752227-42-8.x.4.x.patch",
-                        "Enter drupal/page_manager patch #3096408 description here": "https://www.drupal.org/files/issues/2019-11-23/Issue-3096408-Page-Manager-issue-with-conflict-modul.patch"
+                        "Enter drupal/page_manager patch #2752227 description here": "https://www.drupal.org/files/issues/2020-11-12/page_manager-incorrect-page_title-2752227-42-8.x.4.x.patch"
                     },
                     "drupal/paragraphs": {
                         "Enter drupal/paragraphs patch #2878615 description here": "https://www.drupal.org/files/issues/comments_entity_uri-2878615-6.patch"
@@ -12535,9 +12534,9 @@
             "description": "Project template for Drupal 8 sites built with the WxT distribution.",
             "support": {
                 "issues": "https://github.com/drupalwxt/wxt/issues",
-                "source": "https://github.com/drupalwxt/wxt/tree/4.0.x"
+                "source": "https://github.com/drupalwxt/wxt/tree/4.0.0-rc3"
             },
-            "time": "2020-12-12T17:01:36+00:00"
+            "time": "2020-12-13T16:39:35+00:00"
         },
         {
             "name": "drush/drush",
