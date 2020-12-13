@@ -44,6 +44,7 @@
         "drupal/layout_builder_styles": "^1.0@beta",
         "drupal/leaflet": "^2.1.5",
         "drupal/link_class": "^2.0.0",
+        "drupal/linkchecker": "1.x-dev",
         "drupal/linkit": "5.0.0-beta11",
         "drupal/media_entity_download": "^2.0",
         "drupal/moderation_note": "^1.0@beta",
@@ -69,7 +70,6 @@
         "drupaloverride/content_export_yaml": "2.x-dev",
         "drupaloverride/extra_image_field_classes": "1.x-dev",
         "drupaloverride/library_manager": "1.x-dev",
-        "drupaloverride/linkchecker": "1.x-dev",
         "drupaloverride/list_formatter": "2.x-dev",
         "drupaloverride/token_language": "1.x-dev",
         "drupaloverride/views_argument_token": "1.x-dev",
@@ -165,18 +165,6 @@
                 "type": "drupal-module",
                 "dist": {
                     "url": "https://git.drupalcode.org/project/library_manager/repository/archive.zip?ref=8.x-1.x",
-                    "type": "zip"
-                }
-            }
-        },
-        {
-            "type": "package",
-            "package": {
-                "name": "drupaloverride/linkchecker",
-                "version": "1.x-dev",
-                "type": "drupal-module",
-                "dist": {
-                    "url": "https://git.drupalcode.org/project/linkchecker/repository/archive.zip?ref=8.x-1.x",
                     "type": "zip"
                 }
             }
@@ -356,14 +344,8 @@
             "drupal/linkchecker": {
                 "Move linkchecker_watchdog_log out of .module to a dedicated service.":
                 "https://www.drupal.org/files/issues/2020-04-23/3109178-14.patch",
-                "Add support for Redirect module":
-                "https://www.drupal.org/files/issues/2020-06-17/3058014-27.patch",
                 "Undefined offset error":
-                "https://www.drupal.org/files/issues/2020-08-24/undefined-offset-error-3065045-13.patch",
-                "Link Extract Issue":
-                "https://www.drupal.org/files/issues/2020-06-08/3132326-9.patch",
-                "3173634 - Linkchecker breaks entityqueue":
-                "patches/linkchecker_entityqueue_error-3173634.patch"
+                "https://www.drupal.org/files/issues/2020-08-24/undefined-offset-error-3065045-13.patch"
             },
             "drupal/linkit": {
                 "2895153 - Linkit filter should honour the URL query and fragment":
@@ -402,10 +384,6 @@
             "drupaloverride/library_manager": {
                 "3147920 - Drupal 9 compatibility":
                 "https://www.drupal.org/files/issues/2020-12-06/3147920-Automated-Drupal-9-compatibility-fixes.patch"
-            },
-            "drupaloverride/linkchecker": {
-                "3136822 - Drupal 9 compatibility":
-                "https://www.drupal.org/files/issues/2020-05-18/3136822-24.patch"
             },
             "drupaloverride/list_formatter": {
                 "3147945 - Drupal 9 compatibility":

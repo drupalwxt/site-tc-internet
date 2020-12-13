@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "281845ba2f833d82a84512c25ca09cbc",
+    "content-hash": "ada53e3a15eb0a8b5d377aa123ec0bf6",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -8016,6 +8016,65 @@
             }
         },
         {
+            "name": "drupal/linkchecker",
+            "version": "dev-1.x",
+            "source": {
+                "type": "git",
+                "url": "https://git.drupalcode.org/project/linkchecker.git",
+                "reference": "99d7e65a61a67431fcef4c75651cfb0e4a8a5701"
+            },
+            "require": {
+                "drupal/core": "^8.8.0 || ^9",
+                "drupal/dynamic_entity_reference": "^1.0 || ^2.0@alpha"
+            },
+            "require-dev": {
+                "drupal/redirect": "^1.6"
+            },
+            "type": "drupal-module",
+            "extra": {
+                "branch-alias": {
+                    "dev-1.x": "1.x-dev"
+                },
+                "drupal": {
+                    "version": "8.x-1.x-dev",
+                    "datestamp": "1607859307",
+                    "security-coverage": {
+                        "status": "not-covered",
+                        "message": "Dev releases are not covered by Drupal security advisories."
+                    }
+                },
+                "drush": {
+                    "services": {
+                        "drush.services.yml": "^9"
+                    }
+                }
+            },
+            "notification-url": "https://packages.drupal.org/8/downloads",
+            "license": [
+                "GPL-2.0+"
+            ],
+            "authors": [
+                {
+                    "name": "hass",
+                    "homepage": "https://www.drupal.org/u/hass"
+                },
+                {
+                    "name": "See other contributors",
+                    "homepage": "https://www.drupal.org/node/243795/committers"
+                },
+                {
+                    "name": "hass",
+                    "homepage": "https://www.drupal.org/user/85918"
+                }
+            ],
+            "description": "Periodically checks for broken links in node types, blocks and fields and reports the results.",
+            "homepage": "https://www.drupal.org/project/linkchecker",
+            "support": {
+                "source": "https://git.drupal.org/project/linkchecker.git",
+                "issues": "https://www.drupal.org/project/issues/linkchecker"
+            }
+        },
+        {
             "name": "drupal/linkit",
             "version": "5.0.0-beta11",
             "source": {
@@ -12263,15 +12322,6 @@
             "dist": {
                 "type": "zip",
                 "url": "https://git.drupalcode.org/project/library_manager/repository/archive.zip?ref=8.x-1.x"
-            },
-            "type": "drupal-module"
-        },
-        {
-            "name": "drupaloverride/linkchecker",
-            "version": "1.x-dev",
-            "dist": {
-                "type": "zip",
-                "url": "https://git.drupalcode.org/project/linkchecker/repository/archive.zip?ref=8.x-1.x"
             },
             "type": "drupal-module"
         },
@@ -21681,6 +21731,7 @@
         "drupal/entity_clone": 10,
         "drupal/insert_view_adv": 10,
         "drupal/layout_builder_styles": 10,
+        "drupal/linkchecker": 20,
         "drupal/moderation_note": 10,
         "drupal/module_filter": 20,
         "drupal/mini_layouts": 15,
@@ -21690,7 +21741,6 @@
         "drupaloverride/content_export_yaml": 20,
         "drupaloverride/extra_image_field_classes": 20,
         "drupaloverride/library_manager": 20,
-        "drupaloverride/linkchecker": 20,
         "drupaloverride/list_formatter": 20,
         "drupaloverride/token_language": 20,
         "drupaloverride/views_argument_token": 20,
