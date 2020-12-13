@@ -317,10 +317,6 @@
                 "3187269 - make book nav titles translatable":
                 "https://www.drupal.org/files/issues/2020-12-08/book-nav_link-titles.patch"
             },
-            "drupal/cshs": {
-                "2948891 - InvalidArgumentException: Value is not a valid entity.":
-                "https://www.drupal.org/files/issues/2018-09-20/InvalidArgumentException-value-is-not-a-valid-entity-2948891-7.patch"
-            },
             "drupal/diff": {
                 "3004705 - The getModerationState() function fails to take translations into consideration":
                 "https://www.drupal.org/files/issues/2018-12-03/ModerationState-error-of-translated-node-in-revision-overview-page-3004705-4.patch",
