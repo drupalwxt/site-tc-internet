@@ -396,8 +396,10 @@
             "drupaloverride/views_url_alias": {
                 "3036345 - Add Indexes":
                 "https://www.drupal.org/files/issues/2019-02-28/no-database-index-created-3036345-2.patch",
-                "3104606 - Automated Drupal 9 compatibility fixes":
-                "https://www.drupal.org/files/issues/2020-06-06/views_url_alias.1.x-dev.rector.patch"
+                "3142138 - Drupal 9 compatibility":
+                "https://www.drupal.org/files/issues/2020-06-06/views_url_alias.1.x-dev.rector.patch",
+                "3104606 - Implement path alias changes":
+                "https://www.drupal.org/files/issues/2020-12-13/3104606-Implement-path-alias-changes-in-8.x-1.patch"
             }
         },
         "patches-ignore": {
