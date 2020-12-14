@@ -263,10 +263,6 @@
             "drupal/core": "-p2"
         },
         "patches": {
-            "drupal/book_tree_menu": {
-                "3136185 - Drupal 9 compatibility":
-                "https://www.drupal.org/files/issues/2020-05-13/d9_compatible-3136185-2.patch"
-            },
             "drupal/ckeditor_templates_ui": {
                 "3109348 - Add ability to set conditions (by language and content-type) on templates":
                 "https://www.drupal.org/files/issues/2020-01-27/ckeditor_templates_ui-conditions_feature-3109348-2.patch"
@@ -333,14 +329,6 @@
                 "3186865 - Adjust context definitions to D9 format":
                 "https://www.drupal.org/files/issues/2020-12-06/3186865-Geofield-updates-for-context-to-conten.patch"
             },
-            "drupal/library_manager": {
-                "3138547 - Add dependency form fails with google_tag":
-                "https://www.drupal.org/files/issues/2020-05-21/library_manager-add_dep_wsod-3138547-2.patch",
-                "3143565 - Condition logic issue skips libraries that should be attached":
-                "https://www.drupal.org/files/issues/2020-05-28/library_manager-condition_logic-3143565-2.patch",
-                "3186863 - Drupal 9 compatibility fixes":
-                "https://www.drupal.org/files/issues/2020-12-06/3186863-Drupal-9-compatibility-fixes.patch"
-            },
             "drupal/linkchecker": {
                 "Move linkchecker_watchdog_log out of .module to a dedicated service.":
                 "https://www.drupal.org/files/issues/2020-04-23/3109178-14.patch",
@@ -367,6 +355,10 @@
                 "3046752 - AJAX error when editing term content":
                 "https://www.drupal.org/files/issues/2019-07-30/taxonomy_manager-3046752-1.patch"
             },
+            "drupaloverride/book_tree_menu": {
+                "3136185 - Drupal 9 compatibility":
+                "https://www.drupal.org/files/issues/2020-05-13/d9_compatible-3136185-2.patch"
+            },
             "drupaloverride/business_rules": {
                 "3146343 - Drupal 9 compatibility":
                 "https://www.drupal.org/files/issues/2020-12-06/3146343-Automated-Drupal-9-compatibility-fixes.patch",
@@ -382,8 +374,12 @@
                 "https://www.drupal.org/files/issues/2020-05-22/3139021-3.patch"
             },
             "drupaloverride/library_manager": {
-                "3147920 - Drupal 9 compatibility":
-                "https://www.drupal.org/files/issues/2020-12-06/3147920-Automated-Drupal-9-compatibility-fixes.patch"
+                "3138547 - Add dependency form fails with google_tag":
+                "https://www.drupal.org/files/issues/2020-05-21/library_manager-add_dep_wsod-3138547-2.patch",
+                "3143565 - Condition logic issue skips libraries that should be attached":
+                "https://www.drupal.org/files/issues/2020-05-28/library_manager-condition_logic-3143565-2.patch",
+                "3186863 - Drupal 9 compatibility fixes":
+                "https://www.drupal.org/files/issues/2020-12-06/3186863-Drupal-9-compatibility-fixes.patch"
             },
             "drupaloverride/list_formatter": {
                 "3147945 - Drupal 9 compatibility":
