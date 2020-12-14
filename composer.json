@@ -378,7 +378,9 @@
                 "https://www.drupal.org/files/issues/2020-05-21/library_manager-add_dep_wsod-3138547-2.patch",
                 "3143565 - Condition logic issue skips libraries that should be attached":
                 "https://www.drupal.org/files/issues/2020-05-28/library_manager-condition_logic-3143565-2.patch",
-                "3186863 - Drupal 9 compatibility fixes":
+                "3147920 - Drupal 9 compatibility":
+                "https://www.drupal.org/files/issues/2020-12-06/3147920-Automated-Drupal-9-compatibility-fixes.patch",
+                "3186863 - Drupal 9 deleteRecursive":
                 "https://www.drupal.org/files/issues/2020-12-06/3186863-Drupal-9-compatibility-fixes.patch"
             },
             "drupaloverride/list_formatter": {
