@@ -65,6 +65,14 @@
         "drupal/views_bulk_operations": "^3.9",
         "drupal/views_data_export": "^1.0@RC",
         "drupal/webform_views": "^5.0@alpha",
+        "chartjs/chartjs": "v2.9.4",
+        "chartjs/chartjs-color-string": "v0.6.0",
+        "chartjs/chartjs-color": "v2.4.1",
+        "ckeditor/templates": "v4.15.1",
+        "colorjs/color-name": "v1.1.4",
+        "qix/color-convert": "v1.9.3",
+        "leaflet/leaflet": "v1.6.0",
+        "moment/moment": "v2.10.2",
         "drupaloverride/book_tree_menu": "^1.0",
         "drupaloverride/business_rules": "1.x-dev",
         "drupaloverride/content_export_yaml": "2.x-dev",
@@ -96,6 +104,102 @@
         {
             "type": "composer",
             "url": "https://drupalwxt.github.io/composer-extdeps/"
+        },
+        {
+            "type": "package",
+            "package": {
+                "name": "chartjs/chartjs",
+                "version": "v2.9.4",
+                "type": "drupal-library",
+                "dist": {
+                    "url": "https://github.com/chartjs/Chart.js/releases/download/v2.9.4/chart.js-2.9.4.tgz",
+                    "type": "tar"
+                }
+            }
+        },
+        {
+            "type": "package",
+            "package": {
+                "name": "chartjs/chartjs-color-string",
+                "version": "v0.6.0",
+                "type": "drupal-library",
+                "dist": {
+                    "url": "https://github.com/chartjs/chartjs-color-string/archive/v0.6.0.tar.gz",
+                    "type": "tar"
+                }
+            }
+        },
+        {
+            "type": "package",
+            "package": {
+                "name": "chartjs/chartjs-color",
+                "version": "v2.4.1",
+                "type": "drupal-library",
+                "dist": {
+                    "url": "https://github.com/chartjs/chartjs-color/archive/v2.4.1.tar.gz",
+                    "type": "tar"
+                }
+            }
+        },
+        {
+            "type": "package",
+            "package": {
+                "name": "ckeditor/templates",
+                "version": "v4.15.1",
+                "type": "drupal-library",
+                "dist": {
+                    "url": "https://download.ckeditor.com/templates/releases/templates_4.15.1.zip",
+                    "type": "tar"
+                }
+            }
+        },
+        {
+            "type": "package",
+            "package": {
+                "name": "colorjs/color-name",
+                "version": "v1.1.4",
+                "type": "drupal-library",
+                "dist": {
+                    "url": "https://github.com/colorjs/color-name/archive/v1.1.4.tar.gz",
+                    "type": "tar"
+                }
+            }
+        },
+        {
+            "type": "package",
+            "package": {
+                "name": "leaflet/leaflet",
+                "version": "v1.6.0",
+                "type": "drupal-library",
+                "dist": {
+                    "url": "https://github.com/Leaflet/Leaflet/archive/v1.6.0.tar.gz",
+                    "type": "tar"
+                }
+            }
+        },
+        {
+            "type": "package",
+            "package": {
+                "name": "moment/moment",
+                "version": "v2.10.2",
+                "type": "drupal-library",
+                "dist": {
+                    "url": "https://github.com/moment/moment/archive/2.10.2.tar.gz",
+                    "type": "tar"
+                }
+            }
+        },
+        {
+            "type": "package",
+            "package": {
+                "name": "Qix/color-convert",
+                "version": "v1.9.3",
+                "type": "drupal-library",
+                "dist": {
+                    "url": "https://github.com/Qix-/color-convert/archive/1.9.3.tar.gz",
+                    "type": "tar"
+                }
+            }
         },
         {
             "type": "package",
