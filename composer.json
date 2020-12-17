@@ -451,10 +451,6 @@
                 "2973478 - Aliases are not created for affected translations":
                 "https://www.drupal.org/files/issues/2018-07-12/2973478-4.patch"
             },
-            "drupal/redis": {
-                "3004561 - Enable ssl scheme":
-                "https://www.drupal.org/files/issues/2019-06-26/override-default-scheme-and-persistent-for-predis-3004561-12.patch"
-            },
             "drupal/taxonomy_manager": {
                 "3046752 - AJAX error when editing term content":
                 "https://www.drupal.org/files/issues/2019-07-30/taxonomy_manager-3046752-1.patch"
