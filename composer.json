@@ -460,6 +460,8 @@
                 "https://www.drupal.org/files/issues/2020-05-13/d9_compatible-3136185-2.patch"
             },
             "drupaloverride/business_rules": {
+                "3135986 - Only build matrix for flowchart when needed":
+                "https://www.drupal.org/files/issues/2020-05-12/business_rules-lazy-matrix-3135986-2.patch",
                 "3146343 - Drupal 9 compatibility":
                 "https://www.drupal.org/files/issues/2020-12-06/3146343-Automated-Drupal-9-compatibility-fixes.patch",
                 "3146344 - Drupal 9 compatibility":
