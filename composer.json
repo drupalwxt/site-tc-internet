@@ -149,7 +149,7 @@
                 "type": "drupal-library",
                 "dist": {
                     "url": "https://download.ckeditor.com/templates/releases/templates_4.15.1.zip",
-                    "type": "tar"
+                    "type": "zip"
                 }
             }
         },
