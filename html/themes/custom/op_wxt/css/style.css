@@ -22,9 +22,16 @@ p.gc-byline{
     padding-bottom: 1.5em;
 }
 
-//Fix search box text
 .select-wrapper select {
     line-height: 0.5;
+}
+
+.theme-gcweb #wb-srch #custom-search-block-form .form-group {
+  display: inline;
+}
+
+.theme-gcweb #wb-srch #custom-search-block-form input {
+  width: initial;
 }
 
 .field--name-field-inst-featured-link > a{
