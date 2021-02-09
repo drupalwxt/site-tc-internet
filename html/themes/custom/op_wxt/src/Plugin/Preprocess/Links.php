@@ -5,7 +5,7 @@ namespace Drupal\op_wxt\Plugin\Preprocess;
 use Drupal\bootstrap\Plugin\Preprocess\Links as BootstrapLinks;
 
 /**
- * Pre-processes variables for the "links" theme hook 
+ * Pre-processes variables for the "links" theme hook
  * - overrides wxt_bootstrap preprocess to add graceful handling of more languages
  *
  * @ingroup plugins_preprocess
@@ -40,10 +40,10 @@ class Links extends BootstrapLinks {
       foreach ($languages as $key => $lang) {
         // If not one of our national languages
         if ($key != 'en' && $key != 'fr') {
-          // Remove language link if we are either not on a node 
+          // Remove language link if we are either not on a node
           // or we are on a node with the translation not present
           $node = \Drupal::request()->attributes->get('node');
-          if (!$node || ($node && !$node->hasTranslation($key))) {
+          if (!$node instanceof \Drupal\Drupal\node\NodeInterface || !$node->hasTranslation($key)) {
             unset($variables['links'][$key]);
           }
         }

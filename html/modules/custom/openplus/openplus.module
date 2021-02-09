@@ -101,7 +101,7 @@ function openplus_form_node_form_alter(&$form, &$form_state, $form_id) {
   /** @var \Drupal\Core\Node\NodeForm $form_object */
   $form_object = $form_state->getFormObject();
   $node = $form_object->getEntity();
-  $bundle = $node->getType(); 
+  $bundle = $node->getType();
 
   // default and disable team field for external user
   $user = \Drupal::currentUser();
@@ -123,8 +123,8 @@ function openplus_form_node_form_alter(&$form, &$form_state, $form_id) {
             $tids[] = $value['target_id'];
           }
 
-          // set the field defaults and disable 
-          _openplus_set_defaults($form, $field_name, $tids); 
+          // set the field defaults and disable
+          _openplus_set_defaults($form, $field_name, $tids);
         }
         $form[$field_name]['#access'] = FALSE;
       }
@@ -136,7 +136,7 @@ function openplus_form_node_form_alter(&$form, &$form_state, $form_id) {
           $form[$field_name]['#access'] = FALSE;
         }
       }
-    } 
+    }
   }
 
   // copy fields for BN users
@@ -159,9 +159,9 @@ function openplus_form_node_form_alter(&$form, &$form_state, $form_id) {
             }
           }
 
-          // set the field defaults and disable 
-          _openplus_set_defaults($form, $field_name, $tids); 
-        }  
+          // set the field defaults and disable
+          _openplus_set_defaults($form, $field_name, $tids);
+        }
         $form[$field_name]['#access'] = FALSE;
       }
     }
@@ -175,12 +175,12 @@ function openplus_form_node_form_alter(&$form, &$form_state, $form_id) {
   // see if there is a parent in query in case we are adding a child
 
   if (!$allowed) {
-    $form['book']['#access'] = FALSE; 
+    $form['book']['#access'] = FALSE;
   }
   else {
     $new_options = [];
     $options = $form['book']['bid']['#options'];
-    // allow assigning to other books if user has edit access 
+    // allow assigning to other books if user has edit access
     foreach ($options as $key => $option) {
       if (is_numeric($key) and $key > 0 && $key != $node->id()) {
         $bnode = \Drupal::entityTypeManager()->getStorage('node')->load($key);
@@ -295,7 +295,7 @@ function openplus_system_breadcrumb_alter(Breadcrumb &$breadcrumb, RouteMatchInt
       $new_links[] = Link::fromTextAndUrl(t('Transport Canada'), Url::fromRoute('<front>'));
     }
 
-    // remove search from breadcrumb    
+    // remove search from breadcrumb
     if ($route_match->getRouteName() == 'view.site_search.page_1') {
       $links = [];
     }

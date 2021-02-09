@@ -102,4 +102,3 @@ function openplus_tokens($type, $tokens, array $data, array $options, Bubbleable
 
   return $replacements;
 }
-

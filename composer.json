@@ -64,6 +64,7 @@
         "drupal/views_bulk_edit": "^2.5",
         "drupal/views_bulk_operations": "^3.9",
         "drupal/views_data_export": "^1.0@RC",
+        "drupal/webform_content_creator": "^1.7",
         "drupal/webform_views": "^5.0@alpha",
         "chartjs/chartjs": "v2.9.4",
         "chartjs/chartjs-color-string": "v0.6.0",
@@ -80,6 +81,7 @@
         "drupaloverride/library_manager": "1.x-dev",
         "drupaloverride/list_formatter": "2.x-dev",
         "drupaloverride/token_language": "1.x-dev",
+        "drupaloverride/tocify": "2.x-dev",
         "drupaloverride/views_argument_token": "1.x-dev",
         "drupaloverride/views_url_alias": "1.x-dev",
         "toc/toc": "^0.3.2"
@@ -288,6 +290,18 @@
         {
             "type": "package",
             "package": {
+                "name": "drupaloverride/tocify",
+                "version": "2.x-dev",
+                "type": "drupal-module",
+                "dist": {
+                    "url": "https://git.drupalcode.org/project/tocify/repository/archive.zip?ref=8.x-2.x",
+                    "type": "zip"
+                }
+            }
+        },
+        {
+            "type": "package",
+            "package": {
                 "name": "drupaloverride/token_language",
                 "version": "1.x-dev",
                 "type": "drupal-module",
@@ -390,6 +404,8 @@
                 "https://www.drupal.org/files/issues/2019-06-05/3001188-8.patch",
                 "2429699 - Add Views EntityReference filter to be available for all entity reference fields":
                 "https://www.drupal.org/files/issues/2020-06-21/2429699-334.patch",
+                "2918784 - Views RSS row plugin incorrectly assumes links are relative":
+                "https://www.drupal.org/files/issues/2020-02-19/2918784-28-allow-external-url-for-rss-link.patch",
                 "2928108 - Call to a member function isTranslatable() on null in SqlContentEntityStorage":
                 "https://www.drupal.org/files/issues/2019-12-05/2928108-49.patch",
                 "2972308 - Allow users to translate content they can edit":
@@ -421,10 +437,6 @@
                 "3124403 - Type error when subqueue creation fails":
                 "https://www.drupal.org/files/issues/2020-04-02/type-error-3124403-2.patch"
             },
-            "drupal/features": {
-                "3147028 - Update theme functions for Drupal 9":
-                "https://www.drupal.org/files/issues/2020-10-14/3147028-features_templates.patch"
-            },
             "drupal/file_delete": {
                 "3115158 - Add functionality to immediately delete files and override usage check":
                 "https://www.drupal.org/files/issues/2020-02-21/3115158-2.patch"
@@ -450,6 +462,10 @@
             "drupal/taxonomy_manager": {
                 "3046752 - AJAX error when editing term content":
                 "https://www.drupal.org/files/issues/2019-07-30/taxonomy_manager-3046752-1.patch"
+            },
+            "drupal/varnish_purge": {
+                "3194678 - Resolve missing config_export keys":
+                "https://www.drupal.org/files/issues/2021-01-26/missing-config-export-3194678-2.patch"
             },
             "drupaloverride/book_tree_menu": {
                 "3136185 - Drupal 9 compatibility":
@@ -488,6 +504,10 @@
             "drupaloverride/token_language": {
                 "3150515 - Drupal 9 compatibility":
                 "https://www.drupal.org/files/issues/2020-06-10/3150515-3.patch"
+            },
+            "drupaloverride/tocify": {
+                "3185176 - Tocify as a field":
+                "https://www.drupal.org/files/issues/2020-11-27/tocify-field-3185176-4.patch"
             },
             "drupaloverride/views_argument_token": {
                 "3139155 - Drupal 9 compatibility":
