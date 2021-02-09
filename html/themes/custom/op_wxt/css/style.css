@@ -22,9 +22,9 @@ p.gc-byline{
     padding-bottom: 1.5em;
 }
 
-.select-wrapper select {
+/* .select-wrapper select {
     line-height: 0.5;
-}
+} */
 
 .theme-gcweb #wb-srch #custom-search-block-form .form-group {
   display: inline;
