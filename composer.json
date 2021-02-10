@@ -495,7 +495,7 @@
                 "3147920 - Drupal 9 compatibility":
                 "https://www.drupal.org/files/issues/2020-12-06/3147920-Automated-Drupal-9-compatibility-fixes.patch",
                 "3186863 - Drupal 9 deleteRecursive":
-                "https://www.drupal.org/files/issues/2021-02-09/3186863-Drupal-9-compatibility-fixes-3.patch"
+                "https://www.drupal.org/files/issues/2021-02-09/3186863-Drupal-9-compatibility-fixes-4.patch"
             },
             "drupaloverride/list_formatter": {
                 "3147945 - Drupal 9 compatibility":
